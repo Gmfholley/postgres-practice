@@ -3,8 +3,7 @@
 This repository is just a dataset in CSV format.  It's meant to illustrate how you could download data from somewhere else and import it into a SQL (or relational)
  database.
 
-
-#Installation
+ ##Installation
 
 1. Create a GitHub account.
 1. [Fork this repository](https://help.github.com/articles/fork-a-repo/) to your own account (create your own copy).
@@ -19,8 +18,7 @@ This repository is just a dataset in CSV format.  It's meant to illustrate how y
 
 Once you hit enter, it should do some things, and you should have this saved locally!
 
-
-#Postgres Set Up
+##Postgres Set Up
 
 You are going to practice SQL using the dataset in this repo.  The flavor of SQL we will be using is postgres.  It should already be installed in your workspace.  But we still need to set up a few things.
 
@@ -46,56 +44,58 @@ You are running postgres, and you can type in SQL and expect it to execute.  Let
   CREATE DATABASE "practice";
 ```
 
-Type `\list` to see the databases and confirm that the new one is amde.
+Type `\list` to see the databases and confirm that the new one is made.
 
 Then type `\ q` to quit postgres.
 
-Now we're going to enter a postgres session where we can only work with our database.  Type: `psql practice`, and you should have a new postgres session.
+Now we're going to enter a postgres session where we can only work with our database.  Type: `psql practice` (practice == the name of the database you just created in quotes), and you should have a new postgres session.
 
-#Converting CSV data into postgres
+##Converting CSV data into postgres
 
-We will be definine a new table.  We need to define each column name and what data type it will store. You can find [data types here](https://www.techonthenet.com/postgresql/datatypes.php).  An example create table command might be:
+We will be definine a new table.  We need to define each column name and what data type it will store. You can find [data types that postres uses here](https://www.techonthenet.com/postgresql/datatypes.php).  An example create table command might be:
 ```
   CREATE TABLE happiness (
-    id int, 
     country text, 
     ranking int, 
     score double precision
   );
 ```
 
-1. There are two csv files - one with the column names and types and one with the data.  Build a SQL command to build the table you will need.
-1. Next, you will convert the csv files into data in the table.  Normally, you would use a `INSERT` command to create new records, but postgres has a `COPY` command we will use for this purpose.
+
+1. There are two csv files in this repository - one with the column names and types and one with the data.  
+1. Use the `headings` csv file as a reference to build the SQL command that will create the table. Create the table with columns that match the data EXACTLY.  Do not add, reorder, or remove columns or try to change the data type.
+1. Type in the SQL command you built.  If it works, it will say `CREATE TABLE`, and you will find it in a list of tables if you type in `\dt`.
+1. Next, you will convert the csv data file into data in the table.  Normally, you would use a `INSERT` command to create new records, but postgres has a `COPY` command we will use for this purpose.
 
 ```
   COPY happiness FROM './happiness_data.csv' DELIMITER ',' CSV;
 ```
 
-If it says it cannot find the file, you may have to use `pwd` (print working directory) to find the path of the file as you've stored it locally.  Then try changing the filename to `#{path_pwd_returned}/happiness_data.csv`.
+Note: If it says it cannot find the file, you may have to use the terminal command `pwd` (print working directory) to find the path of the file as you've stored it locally.  Then try changing the filename to `#{path_pwd_returned}/happiness_data.csv`.
 
-#Playing with the data
+##Playing with the data
 
 You should have your data loaded!  Yay!  Now you can run SQL queries over it.
 
 Want to know if the world is trending happier or unhappier?  Try this?
 ```
-  SELECT year, AVG(score) AS average_happiness FROM happiness_index
+  SELECT year, AVG(score) AS average_happiness FROM happiness
   GROUP BY year
   ORDER BY year;
 ```
 
-Want to see if the 10 unhappiest countries in 2017?
+Want to see the 10 happiest countries in 2017?
 ```
-SELECT year, country, score as average_happiness FROM happiness_index
+SELECT year, country, score as average_happiness FROM happiness
 WHERE year=2017
-ORDER BY score
+ORDER BY score DESC
 LIMIT 10;
 
 ```
 
 What about the average happiness by region instead of country?
 ```
-  SELECT year, region, AVG(score) AS average_happiness FROM happiness_index
+  SELECT year, region, AVG(score) AS average_happiness FROM happiness
   GROUP BY year, region
   ORDER BY year, average_happiness;
 ```

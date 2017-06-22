@@ -1,9 +1,9 @@
-#Postgres practice repository
+# Postgres practice repository
 
 This repository is just a dataset in CSV format.  It's meant to illustrate how you could download data from somewhere else and import it into a SQL (or relational)
  database.
 
- ##Installation
+# Installation
 
 1. Create a GitHub account.
 1. [Fork this repository](https://help.github.com/articles/fork-a-repo/) to your own account (create your own copy).
@@ -18,7 +18,7 @@ This repository is just a dataset in CSV format.  It's meant to illustrate how y
 
 Once you hit enter, it should do some things, and you should have this saved locally!
 
-##Postgres Set Up
+# Postgres Set Up
 
 You are going to practice SQL using the dataset in this repo.  The flavor of SQL we will be using is postgres.  It should already be installed in your workspace.  But we still need to set up a few things.
 
@@ -50,7 +50,7 @@ Then type `\ q` to quit postgres.
 
 Now we're going to enter a postgres session where we can only work with our database.  Type: `psql practice` (practice == the name of the database you just created in quotes), and you should have a new postgres session.
 
-##Converting CSV data into postgres
+# Converting CSV data into postgres
 
 We will be definine a new table.  We need to define each column name and what data type it will store. You can find [data types that postres uses here](https://www.techonthenet.com/postgresql/datatypes.php).  An example create table command might be:
 ```
@@ -73,7 +73,7 @@ We will be definine a new table.  We need to define each column name and what da
 
 Note: If it says it cannot find the file, you may have to use the terminal command `pwd` (print working directory) to find the path of the file as you've stored it locally.  Then try changing the filename to `#{path_pwd_returned}/happiness_data.csv`.
 
-##Playing with the data
+# Playing with the data
 
 You should have your data loaded!  Yay!  Now you can run SQL queries over it.
 

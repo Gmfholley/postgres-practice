@@ -1,0 +1,2 @@
+Country,Region,Happiness Rank,Happiness Score,Happiness High Tolerance,Happiness Low Tolerance,Economy (GDP per Capita),Family,Health (Life Expectancy),Freedom,Trust (Government Corruption),Generosity,Dystopia Residual,Year
+String,String,Integer,Float,Float,Float,Float,Float,Float,Float,Float,Float,Float,Integer

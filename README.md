@@ -61,7 +61,6 @@ We will be definine a new table.  We need to define each column name and what da
   );
 ```
 
-
 1. There are two csv files in this repository - one with the column names and types and one with the data.  
 1. Use the `headings` csv file as a reference to build the SQL command that will create the table. Create the table with columns that match the data EXACTLY.  Do not add, reorder, or remove columns or try to change the data type.
 1. Type in the SQL command you built.  If it works, it will say `CREATE TABLE`, and you will find it in a list of tables if you type in `\dt`.
@@ -83,6 +82,8 @@ Want to know if the world is trending happier or unhappier?  Try this?
   GROUP BY year
   ORDER BY year;
 ```
+
+(Hint: if you get caught in terminal in display mode and it won't exit, try hitting `wq` to exit.)
 
 Want to see the 10 happiest countries in 2017?
 ```
